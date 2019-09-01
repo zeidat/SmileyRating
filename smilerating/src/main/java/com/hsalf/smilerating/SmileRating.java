@@ -255,7 +255,7 @@ public class SmileRating extends BaseRating {
 
     private void createTouchPoints() {
         mTouchPoints.clear();
-        float divisions = mWidth / 5f;
+        float divisions = mWidth / 3f;
         float divCenter = divisions / 2f;
         mSmileGap = (divisions - mHeight) / 2f;
         mFromRange = mSmileGap + (mHeight / 2);
@@ -264,6 +264,7 @@ public class SmileRating extends BaseRating {
         for (int i = 0; i < count; i++) {
             mFaces[i] = createFace(i, mCenterY);
             mTouchPoints.put(SMILES_LIST[i], new Point((divisions * i) + divCenter, mCenterY));
+
         }
     }
 
@@ -279,6 +280,7 @@ public class SmileRating extends BaseRating {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        int i = 0 ;
         Point start = mFaces[0].place;
         Point end = mFaces[mFaces.length - 1].place;
         if (mShowLine) {
@@ -286,8 +288,11 @@ public class SmileRating extends BaseRating {
         }
         for (Face face : mFaces) {
             float scale = getScale(face.smileType);
-            canvas.drawCircle(face.place.x, face.place.y,
-                    scale * (mHeight / 2), mPlaceHolderCirclePaint);
+            if(i%2 == 0){
+                canvas.drawCircle(face.place.x, face.place.y,
+                        scale * (mHeight / 2), mPlaceHolderCirclePaint);
+            }
+
             mScaleMatrix.reset();
             face.smile.computeBounds(mScaleRect, true);
             if (mSmileyNotSelectedPreviously) {
@@ -309,6 +314,7 @@ public class SmileRating extends BaseRating {
                     mTextNonSelectedColor, mTextSelectedColor));
             drawTextCentered(getSmileName(face.smileType), face.place.x,
                     face.place.y + (mHeight * (0.70f + transY)), mTextPaint, canvas);
+            i++ ;
         }
         if (!mSmilePath.isEmpty()) {
             if (mSmileyNotSelectedPreviously) {

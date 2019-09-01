@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">SmileRating</string>
     <string name="smile_rating_terrible">Terrible</string>
-    <string name="smile_rating_bad">Bad</string>
+    <string name="smile_rating_bad"></string>
     <string name="smile_rating_okay">Okay</string>
-    <string name="smile_rating_good">Good</string>
+    <string name="smile_rating_good"></string>
     <string name="smile_rating_great">Great</string>
 
     <string-array name="names">
